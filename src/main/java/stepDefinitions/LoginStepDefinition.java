@@ -13,13 +13,14 @@ public class LoginStepDefinition {
 
 
        @Given("^user is on login page$")
-        public void userIsOnLoginPage() {
+        public void userIsOnLoginPage() throws InterruptedException {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\avkin\\Downloads\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("https://demo.nopcommerce.com/login?returnUrl=%2F");
         driver.manage().window().maximize();
         driver.findElement(By.id("Email")).sendKeys("vivekraoba@gmail.com");
         driver.findElement(By.id("Password")).sendKeys("Test@123");
+        Thread.sleep(1000);
 
 
         }
@@ -27,6 +28,7 @@ public class LoginStepDefinition {
     @When("^user enters username and password and clicks login button$")
     public void userEntersUsernameAndPasswordAndClicksLoginButton() {
            driver.findElement(By.className("login-button")).click();
+           driver.navigate().refresh();
     }
 
     @Then("^user enters samsung and clicks search button$")
